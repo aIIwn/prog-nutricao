@@ -6,33 +6,34 @@ public class programa {
 
 	public static void main(String[] args) {
 		
-		char sexo = 0;
-		int idade = 0;
-		int fator = 0;
-		double altura = 0;
-		double peso = 0;
-		double resultadoIMC = 0;
-		double resultadoPesoIdeal = 0;
-		double resultadoTaxaMetabolica;
-		String resultadoSituacao;
+	char sexo = 0;
+	int idade = 0;
+	int fator = 0;
+	int verificaIdade = 0;
+	double altura = 0;
+	double peso = 0;
+	double resultadoIMC = 0;
+	double resultadoPesoIdeal = 0;
+	double resultadoTaxaMetabolica;
+	String resultadoSituacao;		
+	Scanner sc = new Scanner(System.in);
 		
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Informe a Idade: ");
-		idade = sc.nextInt();
-		System.out.print("Informe o Altura: ");
-		altura = sc.nextDouble();
-		System.out.print("Informe o Peso: ");
-		peso = sc.nextDouble();
-		System.out.print("Informe o Sexo: ");
-		sexo = sc.next().charAt(0);		
-		System.out.print("Informe o Fator de atividade (FA).\n1 - Sedent√°ria.\n2 - Atividade de Intensidade Leve.\n3 - Atividade de Intensidade Moderada.\n4 - Atividade de Intensidade Alta.\n5 - Atividade de Intensidade Muito Alta.\nFator de Atividade: ");
-		fator = sc.nextInt();
+	System.out.print("Informe o Altura: ");
+	altura = sc.nextDouble();		
+	System.out.print("Informe o Peso: ");
+	peso = sc.nextDouble();
+	System.out.print("Informe a Idade: ");
+	idade = sc.nextInt();	
+	System.out.print("Informe o Fator de atividade (FA).\n1 - Sedent·ria.\n2 - Atividade de Intensidade Leve.\n3 - Atividade de Intensidade Moderada.\n4 - Atividade de Intensidade Alta.\n5 - Atividade de Intensidade Muito Alta.\nFator de Atividade: ");
+	fator = sc.nextInt();
+	System.out.print("Informe o Sexo.\nDigite 'M' para Masculino ou 'F' para Feminino.\nSexo: ");
+	sexo = sc.next().charAt(0);
 		
-		resultadoIMC = calculoPeso.imc (altura, peso);
-		resultadoSituacao = calculoPeso.condicaoIMC(resultadoIMC);
-		resultadoPesoIdeal = calculoPeso.pesoIdeal(idade, altura, sexo);
-		resultadoTaxaMetabolica = calculoMetabolico.taxaMetabolica(idade, peso, sexo, fator);
-		
-		System.out.println("\n\nIMC: " +resultadoIMC+ " kg/m2.\nSitua√ß√£o: " +resultadoSituacao+ ".\nPeso Ideal: " +resultadoPesoIdeal+ " kg.\nTaxa Metab√≥lica Recomendada: " +resultadoTaxaMetabolica+ " Kcal.");
+	resultadoIMC = calculoPeso.imc (altura, peso);
+	resultadoSituacao = calculoPeso.condicaoIMC(resultadoIMC);
+	resultadoPesoIdeal = calculoPeso.pesoIdeal(idade, altura, sexo);
+	resultadoTaxaMetabolica = calculoMetabolico.taxaMetabolica(idade, peso, sexo, fator);
+	System.out.println("\n\nIMC: " +resultadoIMC+ " kg/m2.\nSituaÁ„o: " +resultadoSituacao+ ".\nPeso Ideal: " +resultadoPesoIdeal+ " kg.\nTaxa MetabÛlica Recomendada: " +resultadoTaxaMetabolica+ " Kcal.");
+	
 	}
 }
