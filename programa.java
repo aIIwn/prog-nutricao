@@ -29,10 +29,10 @@ public class programa {
 		fator = sc.nextInt();
 		
 		resultadoIMC = calculoPeso.imc (altura, peso);
-		resultadoSituacao = calculoPeso.condicaoIMC(resultadoIMC); //Chamar faixa etaria, para refatorar class calculoPeso.
+		resultadoSituacao = calculoPeso.condicaoIMC(resultadoIMC);
 		resultadoPesoIdeal = calculoPeso.pesoIdeal(idade, altura, sexo);
 		resultadoTaxaMetabolica = calculoMetabolico.taxaMetabolica(idade, peso, sexo, fator);
 		
-		System.out.println("\n\nIMC: " +resultadoIMC+ " kg/m2.\nSituação: " +resultadoSituacao+ "\nPeso Ideal: " +resultadoPesoIdeal+ " kg." +resultadoTaxaMetabolica);
+		System.out.println("\n\nIMC: " +resultadoIMC+ " kg/m2.\nSituação: " +resultadoSituacao+ ".\nPeso Ideal: " +resultadoPesoIdeal+ " kg.\nTaxa Metabólica Recomendada: " +resultadoTaxaMetabolica+ " Kcal.");
 	}
 }
