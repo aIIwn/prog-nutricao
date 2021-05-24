@@ -25,14 +25,14 @@ public class programa {
 		peso = sc.nextDouble();
 		System.out.print("Informe o Sexo: ");
 		sexo = sc.next().charAt(0);		
-		System.out.print("Informe o Fator de atividade (FA).\n1 - Sedent·ria.\n2 - Atividade de Intensidade Leve.\n3 - Atividade de Intensidade Moderada.\n4 - Atividade de Intensidade Alta.\n5 - Atividade de Intensidade Muito Alta.\nFator de Atividade: ");
+		System.out.print("Informe o Fator de atividade (FA).\n1 - Sedent√°ria.\n2 - Atividade de Intensidade Leve.\n3 - Atividade de Intensidade Moderada.\n4 - Atividade de Intensidade Alta.\n5 - Atividade de Intensidade Muito Alta.\nFator de Atividade: ");
 		fator = sc.nextInt();
 		
 		resultadoIMC = calculoPeso.imc (altura, peso);
-		resultadoSituacao = calculoPeso.condicaoIMC(resultadoIMC);
+		resultadoSituacao = calculoPeso.condicaoIMC(resultadoIMC); //Chamar faixa etaria, para refatorar class calculoPeso.
 		resultadoPesoIdeal = calculoPeso.pesoIdeal(idade, altura, sexo);
 		resultadoTaxaMetabolica = calculoMetabolico.taxaMetabolica(idade, peso, sexo, fator);
 		
-		System.out.println("\n\nIMC: " +resultadoIMC+ " kg/m2.\nSituaÁ„o: " +resultadoSituacao+ "\nPeso Ideal: " +resultadoPesoIdeal+ " kg." +resultadoTaxaMetabolica);
+		System.out.println("\n\nIMC: " +resultadoIMC+ " kg/m2.\nSitua√ß√£o: " +resultadoSituacao+ "\nPeso Ideal: " +resultadoPesoIdeal+ " kg." +resultadoTaxaMetabolica);
 	}
 }
