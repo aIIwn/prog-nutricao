@@ -5,12 +5,12 @@ import java.math.RoundingMode;
 
 public class calculoPeso {
 	
-	static int indice;
-	static int indice2;
-	static int teste;
+	static int faixaIdade;
+	static int indCondicao;
+	static int resultadoFaixaEtaria;
 	static double imc;
 	static double imcPesoIdeal; 
-	static String condicao[] = {"Abaixo do Peso", "Peso Normal", "Sobre Peso", "Obeso", "Obeso Mórbido"};
+	static String vetCondicao[] = {"Abaixo do Peso", "Peso Normal", "Sobre Peso", "Obeso", "Obeso MÃ³rbido"};
 	static double imcAdultoHomem[] = {22.0, 24.3, 25.1, 23.9, 23.7, 23.1};
 	static double imcAdultoMulher[] = {21.0, 26.5, 26.3, 26.1, 25.5, 23.6};
 	
@@ -22,47 +22,48 @@ public class calculoPeso {
 	
 	public static String condicaoIMC (double resultadoIMC) {
 		if (resultadoIMC < 20) {
-			teste = 0;
+			indCondicao = 0;
 		} else if (resultadoIMC >= 20 && resultadoIMC <= 25) {
-			teste = 1;
+			indCondicao = 1;
 		} else if (resultadoIMC > 25 && resultadoIMC <= 30) {
-			teste = 2;
+			indCondicao = 2;
 		} else if (resultadoIMC > 30 && resultadoIMC <= 40) {
-			teste = 3;
+			indCondicao = 3;
 		} else { //resultadoIMC >= 40.
-			teste = 4;
+			indCondicao = 4;
 		}
-		return condicao[teste];
+		return vetCondicao[indCondicao];
 	}
 	
 	public static double pesoIdeal (int idade, double altura, char sexo) {
-		indice2 = imcFaixaEtaria(idade);
 		if (idade >= 3 && idade <= 10) {
 			imcPesoIdeal = (idade * 2) + 9.0;
 		} else if (idade >=18 && sexo == 'M') {
-			imcPesoIdeal = imcAdultoHomem[indice2] * (Math.pow(altura, 2));
+			resultadoFaixaEtaria = imcFaixaEtaria(idade);
+			imcPesoIdeal = imcAdultoHomem[resultadoFaixaEtaria] * (Math.pow(altura, 2));
 		} else if (idade >=18 && sexo == 'F') {
-			imcPesoIdeal = imcAdultoMulher[indice2] * (Math.pow(altura, 2));
+			resultadoFaixaEtaria = imcFaixaEtaria(idade);
+			imcPesoIdeal = imcAdultoMulher[resultadoFaixaEtaria] * (Math.pow(altura, 2));
 		}
 		BigDecimal pesoIdealFormat = new BigDecimal(imcPesoIdeal).setScale(1, RoundingMode.HALF_EVEN);
 		return pesoIdealFormat.doubleValue();
 	}
-
-	//Verifica a idade para identificar o IMC percentil da faixa etária. 
+	
+	//Verifica faixa etÃ¡ria para imc percetil correspondente.
 	public static int imcFaixaEtaria (int idade) {
 		if (idade >= 18 && idade <= 64) {
-			indice = 0;
+			faixaIdade = 0;
 		} else if (idade >= 65 && idade <= 69) {
-			indice = 1;
+			faixaIdade = 1;
 		} else if (idade >= 70 && idade <= 74) {
-			indice = 2;
+			faixaIdade = 2;
 		} else if (idade >= 75 && idade <= 79) {
-			indice = 3;
+			faixaIdade = 3;
 		} else if (idade >= 80 && idade <= 84) {
-			indice = 4;
+			faixaIdade = 4;
 		} else { //idade >= 85.
-			indice = 5;
+			faixaIdade = 5;
 		}
-		return indice;
+		return faixaIdade;
 	}
 }
