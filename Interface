@@ -1,5 +1,6 @@
 package programa;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,9 +8,8 @@ import javax.swing.*;
 
 public class teste extends JFrame {
 
-	public JTextField recebeAltura;
-	public JTextField recebePeso;
-	public JLabel Altura, Peso;
+	public JTextField recebeAltura, recebeIdade, recebePeso;
+	public JLabel Altura, Peso, Idade, FatorAtividade;
     public JButton Calcular;
     public JComboBox lista;
     
@@ -22,29 +22,62 @@ public class teste extends JFrame {
     public teste() {
     
     this.setTitle("Calculadora do Peso Ideal");
+    this.setBounds(0, 0, 460, 300);
     this.setLocationRelativeTo(null);
-    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    this.setBounds(20,50,350,300);
+    //this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    //this.getContentPane().setLayout(null);    
     
     JPanel painel = new JPanel();
     this.setContentPane(painel);
+    painel.setLayout(null);
     
-    Altura = new JLabel("Atura:");
-    recebeAltura = new JTextField(5);
-    painel.add(Altura);
-    painel.add(recebeAltura);    
+    Idade = new JLabel("Idade:");
+    Idade.setBounds(50, 0, 120, 120);
+    painel.add(Idade);
     
-    Peso = new JLabel("Peso:\n\n");
-    recebePeso = new JTextField(5);
-    painel.add(Peso);
+    recebeIdade = new JTextField();
+    recebeIdade.setBounds(90, 50, 50, 20);
+    painel.add(recebeIdade);
+    
+    Altura = new JLabel("Altura:");
+    Altura.setBounds(50, 30, 120, 120);
+    painel.add(Altura);    
+    
+    recebeAltura = new JTextField(0);
+    recebeAltura.setBounds(90, 80, 50, 20);
+    painel.add(recebeAltura);
+    
+    Peso = new JLabel("Peso:");
+    Peso.setBounds(50, 60, 120, 120);
+    painel.add(Peso);    
+    
+    recebePeso = new JTextField();
+    recebePeso.setBounds(90, 110, 50, 20);
     painel.add(recebePeso);
     
-    Calcular = new JButton("Calcular");
-    Calcular.setBounds(25, 130, 200, 45);
-    painel.add(Calcular);
+    
+    
+    
+    
+    FatorAtividade = new JLabel ("Sexo:");
+    FatorAtividade.setBounds(180, 0, 120, 120);
+    painel.add(FatorAtividade);
     
     lista = new JComboBox (testeVet);
+    lista.setBounds(220, 50, 50, 20);
     painel.add(lista);
+    
+    FatorAtividade = new JLabel ("Fator de Atividade:");
+    FatorAtividade.setBounds(180, 30, 120, 120);
+    painel.add(FatorAtividade);
+    
+    lista = new JComboBox (testeVet);    
+    lista.setBounds(290, 80, 50, 20);
+    painel.add(lista);
+    
+    Calcular = new JButton("Calcular");
+    //Calcular.setBounds(25, 130, 200, 45);
+    painel.add(Calcular);
     
     Calcular.addActionListener(new ActionListener() {
     	
