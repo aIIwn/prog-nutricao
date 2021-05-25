@@ -1,0 +1,66 @@
+package programa;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class teste extends JFrame {
+
+	public JTextField recebeAltura;
+	public JTextField recebePeso;
+	public JLabel Altura, Peso;
+    public JButton Calcular;
+    public JComboBox lista;
+    
+    double valor;
+    double valor2;
+    String teste = "";
+    double taxaMetabolica[] = {12.2, 14.7, 8.7, 10.5};
+    String testeVet[] = {"1.2", "2.1", "3.3", "4.9"};
+    
+    public teste() {
+    
+    this.setTitle("Calculadora do Peso Ideal");
+    this.setLocationRelativeTo(null);
+    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    this.setBounds(20,50,350,300);
+    
+    JPanel painel = new JPanel();
+    this.setContentPane(painel);
+    
+    Altura = new JLabel("Atura:");
+    recebeAltura = new JTextField(5);
+    painel.add(Altura);
+    painel.add(recebeAltura);    
+    
+    Peso = new JLabel("Peso:\n\n");
+    recebePeso = new JTextField(5);
+    painel.add(Peso);
+    painel.add(recebePeso);
+    
+    Calcular = new JButton("Calcular");
+    Calcular.setBounds(25, 130, 200, 45);
+    painel.add(Calcular);
+    
+    lista = new JComboBox (testeVet);
+    painel.add(lista);
+    
+    Calcular.addActionListener(new ActionListener() {
+    	
+        public void actionPerformed(ActionEvent evt) {
+        	
+        	valor = Double.parseDouble(recebeAltura.getText());
+        	
+        	valor2 = Double.parseDouble((String) lista.getSelectedItem());
+        	
+        	
+        	System.out.println("R: " +valor);            
+            System.out.println("R: " +valor2);       	
+        	
+        	
+        	}
+    	});
+    
+    }
+}
