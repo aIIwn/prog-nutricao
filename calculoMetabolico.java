@@ -17,18 +17,18 @@ public class calculoMetabolico {
 	static int acrescimoHomem[] = {651, 679, 879, 487};
 	static double fatorAtividadeH[] = {1.2, 1.4, 1.5, 1.6, 1.8};
 	
-	public static double taxaMetabolica (int idade, double peso, char sexo, int fator) {
+	public static double taxaMetabolica (int idade, double peso, String sexo, int fator) {
 		indice = faixaEtaria(idade);
-		if (sexo == 'M' || sexo == 'm') {
-			tmbRecomendada = ((taxaMetabolicaHomem[indice] * peso) + acrescimoHomem[indice]) * fatorAtividadeH[fator-1];
-		} else if (sexo == 'F' || sexo == 'f') {
-			tmbRecomendada = ((taxaMetabolicaMulher[indice] * peso) + acrescimoMulher[indice]) * fatorAtividadeM[fator-1];
+		if (sexo == "Masculino") {
+			tmbRecomendada = ((taxaMetabolicaHomem[indice] * peso) + acrescimoHomem[indice]) * fatorAtividadeH[fator];
+		} else if (sexo == "Feminino") {
+			tmbRecomendada = ((taxaMetabolicaMulher[indice] * peso) + acrescimoMulher[indice]) * fatorAtividadeM[fator];
 		}
 		BigDecimal taxaFormat = new BigDecimal(tmbRecomendada).setScale(1, RoundingMode.HALF_EVEN);
 		return taxaFormat.doubleValue();
 	}
 	
-	//Verifica a idade para identificar a taxa metabólica da faixa etária.
+	//Verifica a idade para identificar a taxa metabÃ³lica da faixa etÃ¡ria.
 	public static int faixaEtaria (int idade) {
 		if (idade >= 10 && idade <= 18) {
 			indice = 0;
