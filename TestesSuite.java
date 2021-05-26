@@ -8,5 +8,5 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({TesteCalculoPeso.class, TesteCalculoMetabolico.class})
 
 public class TestesSuite {
-
+  
 }
