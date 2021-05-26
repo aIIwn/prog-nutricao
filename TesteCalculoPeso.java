@@ -21,7 +21,7 @@ class TesteCalculoPeso {
 	}
 
 	@Test
-	void testCondicaoIMC() { //ARRUMAR OS NUMEROS.
+	void testCondicaoIMC() {
 		assertEquals("CASO 04: ", "Abaixo do Peso", calculoPeso.condicaoIMC(19.3));
 		assertEquals("CASO 05: ", "Peso Normal", calculoPeso.condicaoIMC(20.1));
 		assertEquals("CASO 06: ", "Peso Normal", calculoPeso.condicaoIMC(24.9));
@@ -37,21 +37,21 @@ class TesteCalculoPeso {
 	@Test
 	void testPesoIdeal() {
 		assertEquals("CASO 14: ", 23.0, calculoPeso.pesoIdeal(7, 1.10, "Masculino"), 0);
-		/*assertEquals("CASO 15: ", 29.0, calculoPeso.pesoIdeal(10, 1.37, 'F'), 0);
-		assertEquals("CASO 16: ", 65.8, calculoPeso.pesoIdeal(27, 1.73, 'M'), 0);
-		assertEquals("CASO 17: ", 62.9, calculoPeso.pesoIdeal(27, 1.73, 'F'), 0);
-		assertEquals("CASO 18: ", 53.5, calculoPeso.pesoIdeal(30, 1.56, 'M'), 0);
-		assertEquals("CASO 19: ", 51.1, calculoPeso.pesoIdeal(30, 1.56, 'F'), 0);
-		assertEquals("CASO 20: ", 72.7, calculoPeso.pesoIdeal(65, 1.73, 'M'), 0);
-		assertEquals("CASO 21: ", 79.3, calculoPeso.pesoIdeal(69, 1.73, 'F'), 0);
-		assertEquals("CASO 22: ", 85.9, calculoPeso.pesoIdeal(70, 1.85, 'M'), 0);
-		assertEquals("CASO 23: ", 90.0, calculoPeso.pesoIdeal(74, 1.85, 'F'), 0);
-		assertEquals("CASO 24: ", 69.1, calculoPeso.pesoIdeal(75, 1.70, 'M'), 0);
-		assertEquals("CASO 25: ", 75.4, calculoPeso.pesoIdeal(79, 1.70, 'F'), 0);		
-		assertEquals("CASO 26: ", 66.1, calculoPeso.pesoIdeal(80, 1.67, 'M'), 0);
-		assertEquals("CASO 27: ", 71.1, calculoPeso.pesoIdeal(84, 1.67, 'F'), 0);		
-		assertEquals("CASO 28: ", 67.5, calculoPeso.pesoIdeal(85, 1.71, 'M'), 0);
-		assertEquals("CASO 29: ", 69.0, calculoPeso.pesoIdeal(89, 1.71, 'F'), 0);*/
+		assertEquals("CASO 15: ", 29.0, calculoPeso.pesoIdeal(10, 1.37, "Feminino"), 0);
+		assertEquals("CASO 16: ", 65.8, calculoPeso.pesoIdeal(27, 1.73, "Masculino"), 0);
+		assertEquals("CASO 17: ", 62.9, calculoPeso.pesoIdeal(27, 1.73, "Feminino"), 0);
+		assertEquals("CASO 18: ", 53.5, calculoPeso.pesoIdeal(30, 1.56, "Masculino"), 0);
+		assertEquals("CASO 19: ", 51.1, calculoPeso.pesoIdeal(30, 1.56, "Feminino"), 0);
+		assertEquals("CASO 20: ", 72.7, calculoPeso.pesoIdeal(65, 1.73, "Masculino"), 0);
+		assertEquals("CASO 21: ", 79.3, calculoPeso.pesoIdeal(69, 1.73, "Feminino"), 0);
+		assertEquals("CASO 22: ", 85.9, calculoPeso.pesoIdeal(70, 1.85, "Masculino"), 0);
+		assertEquals("CASO 23: ", 90.0, calculoPeso.pesoIdeal(74, 1.85, "Feminino"), 0);
+		assertEquals("CASO 24: ", 69.1, calculoPeso.pesoIdeal(75, 1.70, "Masculino"), 0);
+		assertEquals("CASO 25: ", 75.4, calculoPeso.pesoIdeal(79, 1.70, "Feminino"), 0);		
+		assertEquals("CASO 26: ", 66.1, calculoPeso.pesoIdeal(80, 1.67, "Masculino"), 0);
+		assertEquals("CASO 27: ", 71.1, calculoPeso.pesoIdeal(84, 1.67, "Feminino"), 0);		
+		assertEquals("CASO 28: ", 67.5, calculoPeso.pesoIdeal(85, 1.71, "Masculino"), 0);
+		assertEquals("CASO 29: ", 69.0, calculoPeso.pesoIdeal(89, 1.71, "Feminino"), 0);
 	}
 
 	@Test
