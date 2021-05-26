@@ -8,7 +8,7 @@ public class calculoPeso {
 	static int resultadoFaixaEtaria;
 	static double imc;
 	static double imcPesoIdeal; 
-	static String vetCondicao[] = {"Abaixo do Peso", "Peso Normal", "Sobre Peso", "Obeso", "Obeso Mórbido"};
+	static String vetCondicao[] = {"Abaixo do Peso", "Peso Normal", "Sobre Peso", "Obeso", "Obeso MÃ³rbido"};
 	static double imcCrianca[] = {9.0};
 	static double imcHomem[] = {9.0, 22.0, 24.3, 25.1, 23.9, 23.7, 23.1};
 	static double imcMulher[] = {9.0, 21.0, 26.5, 26.3, 26.1, 25.5, 23.6};
@@ -32,22 +32,22 @@ public class calculoPeso {
 			return vetCondicao[4];
 	}
 	
-	public static double pesoIdeal (int idade, double altura, char sexo) {		
+	public static double pesoIdeal (int idade, double altura, String sexo) {		
 		resultadoFaixaEtaria = imcFaixaEtaria(idade);		
 		if (idade >= 3 && idade <= 10) {	
 			imcPesoIdeal = (idade * 2) + imcCrianca[resultadoFaixaEtaria];
-		} else if (idade >=18 && (sexo == 'M' || sexo == 'm')) {
+		} else if (idade >=18 && sexo == "Masculino") {
 			imcPesoIdeal = imcHomem[resultadoFaixaEtaria] * (Math.pow(altura, 2));
-		} else if (idade >=18 && (sexo == 'F' || sexo == 'f')) {
+		} else if (idade >=18 && sexo == "Feminino") {
 			imcPesoIdeal = imcMulher[resultadoFaixaEtaria] * (Math.pow(altura, 2));
 		} else {
-			//imcPesoIdeal = imcCrianca[resultadoFaixaEtaria] * (Math.pow(altura, 2)); Fazer tratamento de exceção.
+			//imcPesoIdeal = imcCrianca[resultadoFaixaEtaria] * (Math.pow(altura, 2)); Fazer tratamento de exceÃ§Ã£o.
 		}
 		BigDecimal pesoIdealFormat = new BigDecimal(imcPesoIdeal).setScale(1, RoundingMode.HALF_EVEN);
 		return pesoIdealFormat.doubleValue();
 	}
 	
-	//Verifica faixa etária para imc percetil correspondente.
+	//Verifica faixa etÃ¡ria para imc percetil correspondente.
 	public static int imcFaixaEtaria (int idade) {
 		
 		if (idade >= 3 && idade <= 10) {
@@ -65,6 +65,6 @@ public class calculoPeso {
 		} else if (idade >= 85) {
 			return 6;
 		}
-		return -1;
+		return -1; //Idade fora da tabela.
 	}
 }
