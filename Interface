@@ -1,98 +1,111 @@
-package programa;
+package entidades;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 
-public class teste extends JFrame {
+public class Interface extends JFrame {
 
-	public JTextField recebeAltura, recebeIdade, recebePeso;
-	public JLabel Altura, Peso, Idade, FatorAtividade, Sexo;
-    public JButton Calcular;
-    public JComboBox lista, listaSexo;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private JTextField recebeIdade;
+	private JTextField recebeAltura;
+	private JTextField recebePeso;
+	private JLabel jIdade;
+	private JLabel jAltura;
+	private JLabel jPeso;
+	private JLabel jSexo;
+	private JLabel jFator;
+	private JComboBox<Object> listaFator;
+	private JComboBox<Object> listaSexo;
+	private JButton Calcular;
+
+    String exibiFator[] = {"Sedentário(a)", "Atividade Básicas", "Atividade Leve", "Atividade Moderada", "Atividade Intensa"};
+    String exibiSexo[] = {"Masculino", "Feminino"};
+
+    int idade = 0;
+	int fator = 0;
+	int verificaIdade = 0;
+	double altura = 0;
+	double peso = 0;
+	double resultadoIMC = 0;
+	double resultadoPesoIdeal = 0;
+	double resultadoTaxaMetabolica = 0;
+	String sexo = "";
+	String resultadoSituacao = "";
+
+	public Interface() throws ParseException {
+
+    	this.setTitle("Peso Ideal");
+    	this.setBounds(0, 0, 350, 310);
+    	this.setLocationRelativeTo(null);
+
+    	JPanel painel = new JPanel();
+    	this.setContentPane(painel);
+    	painel.setLayout(null);
+
+    	jIdade = new JLabel("Idade:");
+    	jIdade.setBounds(120, -20, 120, 120);
+    	painel.add(jIdade);
+    	recebeIdade = new JFormattedTextField(new MaskFormatter("##"));
+    	recebeIdade.setBounds(160, 30, 40, 20);
+    	painel.add(recebeIdade);
     
-    double valor;
-    double valor2;
-    String teste = "";
-    double taxaMetabolica[] = {12.2, 14.7, 8.7, 10.5};
-    String testeVet[] = {"Abaixo do Peso", "Peso Normal", "Sobre Peso", "Obeso", "Obeso Mórbido"};
-    String sexoVet[] = {"Masculino", "Feminino"};
-    
-    public teste() {
-    
-    this.setTitle("Peso Ideal");
-    this.setBounds(0, 0, 350, 350);
-    this.setLocationRelativeTo(null);  
-    
-    JPanel painel = new JPanel();
-    this.setContentPane(painel);
-    painel.setLayout(null);
-    
-    Idade = new JLabel("Idade:");
-    Idade.setBounds(100, -20, 120, 120); //
-    painel.add(Idade);
-    
-    recebeIdade = new JTextField();
-    recebeIdade.setBounds(140, 30, 40, 20);
-    painel.add(recebeIdade);
-    
-    Altura = new JLabel("Altura:");
-    Altura.setBounds(100, 10, 120, 120); //
-    painel.add(Altura);    
-    
-    recebeAltura = new JTextField(0);
-    recebeAltura.setBounds(140, 60, 40, 20);
-    painel.add(recebeAltura);
-    
-    Peso = new JLabel("Peso:");
-    Peso.setBounds(100, 40, 120, 120); //
-    painel.add(Peso);    
-    
-    recebePeso = new JTextField();
-    recebePeso.setBounds(140, 90, 40, 20);
-    painel.add(recebePeso);
-    
-    
-    
-    
-    
-    Sexo = new JLabel ("Sexo:");
-    Sexo.setBounds(100, 70, 120, 120);
-    painel.add(Sexo);
-    
-    listaSexo = new JComboBox (sexoVet);
-    listaSexo.setBounds(140, 120, 90, 20);
-    painel.add(listaSexo);
-    
-    FatorAtividade = new JLabel ("Fator de Atividade:");
-    FatorAtividade.setBounds(50, 100, 120, 120);
-    painel.add(FatorAtividade);
-    
-    lista = new JComboBox (testeVet);    
-    lista.setBounds(160, 150, 120, 20);
-    painel.add(lista);
-    
-    Calcular = new JButton("Calcular");
-    Calcular.setBounds(120, 220, 85, 30);
-    painel.add(Calcular);    
-    
-    Calcular.addActionListener(new ActionListener() {
-    	
-        public void actionPerformed(ActionEvent evt) {
+    	jAltura = new JLabel("Altura:");
+    	jAltura.setBounds(120, 10, 120, 120);
+    	painel.add(jAltura);
+    	recebeAltura = new JFormattedTextField(new MaskFormatter("#.##"));
+    	recebeAltura.setBounds(160, 60, 40, 20);
+    	painel.add(recebeAltura);
+
+    	jPeso = new JLabel("Peso:");
+    	jPeso.setBounds(120, 40, 120, 120);
+    	painel.add(jPeso);
+    	recebePeso = new JFormattedTextField();
+    	recebePeso.setBounds(160, 90, 40, 20);
+    	painel.add(recebePeso);
+
+    	jSexo = new JLabel ("Sexo:");
+    	jSexo.setBounds(100, 70, 120, 120);
+    	painel.add(jSexo);
+    	listaSexo = new JComboBox<Object>(exibiSexo);
+    	listaSexo.setBounds(140, 120, 90, 20);
+    	painel.add(listaSexo);
+
+    	jFator = new JLabel ("Fator de Atividade:");
+    	jFator.setBounds(50, 100, 120, 120);
+    	painel.add(jFator);
+    	listaFator = new JComboBox<Object>(exibiFator);
+    	listaFator.setBounds(160, 150, 120, 20);
+    	painel.add(listaFator);
+
+    	Calcular = new JButton("Calcular");
+    	Calcular.setBounds(120, 205, 85, 30);
+    	painel.add(Calcular);
+
+    	Calcular.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent evt) {
         	
-        	valor = Double.parseDouble(recebeAltura.getText());
-        	
-        	valor2 = Double.parseDouble((String) lista.getSelectedItem());
-        	
-        	
-        	System.out.println("R: " +valor);            
-            System.out.println("R: " +valor2);       	
-        	
-        	
+        	idade = Integer.parseInt(recebeIdade.getText());
+    		altura = Double.parseDouble(recebeAltura.getText());
+    		peso = Double.parseDouble(recebePeso.getText());
+    		sexo = (String) listaSexo.getSelectedItem();
+    		fator = listaFator.getSelectedIndex();
+
+    		resultadoIMC = calculoPeso.imc (altura, peso);
+        	resultadoSituacao = calculoPeso.condicaoIMC(resultadoIMC);
+        	resultadoPesoIdeal = calculoPeso.pesoIdeal(idade, altura, sexo);
+        	resultadoTaxaMetabolica = calculoMetabolico.taxaMetabolica(idade, peso, sexo, fator);
+
+        	JOptionPane.showMessageDialog(null,"\n\nIMC: " +resultadoIMC+ " kg/m2.\nSituação: " +resultadoSituacao+ ".\nPeso Ideal: " +resultadoPesoIdeal+ 
+            							  " kg.\nTaxa Metabólica Recomendada: " +resultadoTaxaMetabolica+ " Kcal.");
         	}
     	});
-    
     }
 }
