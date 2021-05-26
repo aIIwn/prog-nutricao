@@ -57,12 +57,11 @@ class TesteCalculoPeso {
 	@Test
 	void testImcFaixaEtaria() {
 		assertEquals("CASO 30: ", 0, calculoPeso.imcFaixaEtaria(7), 0);
-		assertEquals("CASO 31: ", -1, calculoPeso.imcFaixaEtaria(13), 0);
-		assertEquals("CASO 32: ", 1, calculoPeso.imcFaixaEtaria(18), 0);
-		assertEquals("CASO 33: ", 2, calculoPeso.imcFaixaEtaria(65), 0);
-		assertEquals("CASO 34: ", 3, calculoPeso.imcFaixaEtaria(70), 0);
-		assertEquals("CASO 35: ", 4, calculoPeso.imcFaixaEtaria(75), 0);
-		assertEquals("CASO 36: ", 5, calculoPeso.imcFaixaEtaria(80), 0);		
-		assertEquals("CASO 37: ", 6, calculoPeso.imcFaixaEtaria(85), 0);
+		assertEquals("CASO 31: ", 1, calculoPeso.imcFaixaEtaria(18), 0);
+		assertEquals("CASO 32: ", 2, calculoPeso.imcFaixaEtaria(65), 0);
+		assertEquals("CASO 33: ", 3, calculoPeso.imcFaixaEtaria(70), 0);
+		assertEquals("CASO 34: ", 4, calculoPeso.imcFaixaEtaria(75), 0);
+		assertEquals("CASO 35: ", 5, calculoPeso.imcFaixaEtaria(80), 0);		
+		assertEquals("CASO 36: ", 6, calculoPeso.imcFaixaEtaria(85), 0);
 	}
 }
