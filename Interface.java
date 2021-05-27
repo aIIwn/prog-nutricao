@@ -47,6 +47,7 @@ public class Interface extends JFrame {
     	this.setBounds(0, 0, 350, 280);
     	this.setResizable(false);
     	this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     	JPanel painel = new JPanel();
     	this.setContentPane(painel);
