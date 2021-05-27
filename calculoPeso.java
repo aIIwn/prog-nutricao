@@ -62,9 +62,7 @@ public class calculoPeso {
 			return 4;
 		} else if (idade >= 80 && idade <= 84) {
 			return 5;
-		} else if (idade >= 85) {
+		} else
 			return 6;
-		}
-		return -1; //Idade fora da tabela.
 	}
 }
