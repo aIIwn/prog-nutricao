@@ -99,22 +99,36 @@ public class Interface extends JFrame {
     			
     			sexo = (String) listaSexo.getSelectedItem();
     			fator = listaFator.getSelectedIndex();
-    			altura = Double.parseDouble(recebeAltura.getText());
-    			idade = Integer.parseInt(recebeIdade.getText());
-    			
-    				try {
-    					peso = Double.parseDouble(recebePeso.getText());
-    				} catch (NumberFormatException Erro) {
-    					JOptionPane.showMessageDialog(null,"\nPor favor digite somente números:\nExemplo: 75.9\nInsira novamente o peso!\n\n");
-    					recebePeso.setText("");
-    				}
-    			
-    				if (idade >= 11 && idade <= 17) {
-    					JOptionPane.showMessageDialog(null,"\nIdade não se enquadra nos critérios.\nInsira novamente a idade!");
-    					recebeIdade.setText(null);
-    					
-    				} else if ((idade >= 3 && idade <=10) || (idade >= 18) && peso > 0) {
 
+    			try {
+    				altura = Double.parseDouble(recebeAltura.getText());
+    			} catch (NumberFormatException Erro1) {
+    				JOptionPane.showMessageDialog(null,"\nPor favor preencha o campo Altura!\n\n");
+    				recebeAltura.setText("");
+    				altura = 0;
+    			}
+    			
+    			try {
+    				peso = Double.parseDouble(recebePeso.getText());
+    			} catch (NumberFormatException Erro2) {
+    				JOptionPane.showMessageDialog(null,"\nPor favor preencha o campo Peso!\nExemplo: 75.9\n\n");
+    				recebePeso.setText("");
+    				peso = 0;
+    			}
+    				
+    			try {
+    				idade = Integer.parseInt(recebeIdade.getText());
+    			} catch (NumberFormatException Erro3) {
+    				JOptionPane.showMessageDialog(null,"\nPor favor preencha o campo Idade!\n\n");
+    				recebeIdade.setText("");
+    				idade = 0;
+    			}
+
+    			if (idade >= 1 && idade <= 2 || idade >= 11 && idade <= 17) {
+    				JOptionPane.showMessageDialog(null,"\nIdade não se enquadra nos critérios.\n\nFaixa Etária Coberta.\nCrianças: 03 a 10 anos.\nAdultos: 18 a  64 anos."
+    											  + "\nIdosos: Acima de 65 anos.\n\nInsira novamente a idade!\n\n");
+    				recebeIdade.setText("");
+    			} else if ((idade >= 3 && idade <=10) || (idade >= 18) && peso > 0) {
     					resultadoIMC = calculoPeso.imc (altura, peso);
     					resultadoSituacao = calculoPeso.condicaoIMC(resultadoIMC);
         				resultadoPesoIdeal = calculoPeso.pesoIdeal(idade, altura, sexo);
@@ -129,9 +143,10 @@ public class Interface extends JFrame {
     	Limpar.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent evt ) {
 
-    			recebeAltura.setText(null);
-    			recebePeso.setText(null);
-    			recebeIdade.setText(null);
+    			idade = (int) (altura = peso = 0);
+    			recebeAltura.setText("");
+    			recebePeso.setText("");
+    			recebeIdade.setText("");
 
     			//Campo preenchido para teste.
     			/*recebeAltura.setText("1.73");
