@@ -43,8 +43,9 @@ public class Interface extends JFrame {
 
 	public Interface() throws ParseException {
 
-    	this.setTitle("Peso Ideal");
+    	this.setTitle("Calculadora Peso Ideal");
     	this.setBounds(0, 0, 350, 280);
+    	this.setResizable(false);
     	this.setLocationRelativeTo(null);
 
     	JPanel painel = new JPanel();
@@ -103,7 +104,7 @@ public class Interface extends JFrame {
     			try {
     				altura = Double.parseDouble(recebeAltura.getText());
     			} catch (NumberFormatException Erro1) {
-    				JOptionPane.showMessageDialog(null,"\nPor favor preencha o campo Altura!\n\n");
+    				JOptionPane.showMessageDialog(null,"\nPor favor preencha corretamente o campo Altura!\n\n");
     				recebeAltura.setText("");
     				altura = 0;
     			}
@@ -111,7 +112,7 @@ public class Interface extends JFrame {
     			try {
     				peso = Double.parseDouble(recebePeso.getText());
     			} catch (NumberFormatException Erro2) {
-    				JOptionPane.showMessageDialog(null,"\nPor favor preencha o campo Peso!\nExemplo: 75.9\n\n");
+    				JOptionPane.showMessageDialog(null,"\nPor favor preencha corretamente o campo Peso!\nExemplo: 75.9\n\n");
     				recebePeso.setText("");
     				peso = 0;
     			}
@@ -119,14 +120,13 @@ public class Interface extends JFrame {
     			try {
     				idade = Integer.parseInt(recebeIdade.getText());
     			} catch (NumberFormatException Erro3) {
-    				JOptionPane.showMessageDialog(null,"\nPor favor preencha o campo Idade!\n\n");
+    				JOptionPane.showMessageDialog(null,"\nPor favor preencha corretamente o campo Idade!\n\n");
     				recebeIdade.setText("");
     				idade = 0;
     			}
 
     			if (idade >= 1 && idade <= 2 || idade >= 11 && idade <= 17) {
-    				JOptionPane.showMessageDialog(null,"\nIdade não se enquadra nos critérios.\n\nFaixa Etária Coberta.\nCrianças: 03 a 10 anos.\nAdultos: 18 a  64 anos."
-    											  + "\nIdosos: Acima de 65 anos.\n\nInsira novamente a idade!\n\n");
+    				JOptionPane.showMessageDialog(null,"\nIdade fora dos critérios.\n\nFaixa Etária Coberta.\nCrianças: 03 a 10 anos.\nAdultos: 18 a  64 anos.\nIdosos: Acima de 65 anos.\n\nInsira novamente a idade!\n\n");
     				recebeIdade.setText("");
     			} else if ((idade >= 3 && idade <=10) || (idade >= 18) && peso > 0) {
     					resultadoIMC = calculoPeso.imc (altura, peso);
@@ -134,7 +134,7 @@ public class Interface extends JFrame {
         				resultadoPesoIdeal = calculoPeso.pesoIdeal(idade, altura, sexo);
         				resultadoTaxaMetabolica = calculoMetabolico.taxaMetabolica(idade, peso, sexo, fator);
 
-        				JOptionPane.showMessageDialog(null,"\nIMC :  " +resultadoIMC+ " kg/m2.\nSituação :  " +resultadoSituacao+ ".\n\nPeso Ideal :  " +resultadoPesoIdeal+
+        				JOptionPane.showMessageDialog(null,"Resultado:\n\nIMC :  " +resultadoIMC+ " kg/m2.\nSituação :  " +resultadoSituacao+ ".\nPeso Ideal :  " +resultadoPesoIdeal+
         										  " kg.\nTMB Recomendada :  " +resultadoTaxaMetabolica+ " Kcal.          \n\n");
 				}
         	}
@@ -148,7 +148,7 @@ public class Interface extends JFrame {
     			recebePeso.setText("");
     			recebeIdade.setText("");
 
-    			//Campo preenchido para teste.
+    			//Preenchido para teste.
     			/*recebeAltura.setText("1.73");
     			recebePeso.setText("75.0");
     			recebeIdade.setText("27");*/
