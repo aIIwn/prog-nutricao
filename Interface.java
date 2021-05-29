@@ -1,13 +1,15 @@
-package entidades;
+package programa;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 
-public class Interface extends JFrame {
+import entidades.CalculoPeso;
+import entidades.CalculoMetabolico;
+
+public class Janela extends JFrame {
 
 	/**
 	 * 
@@ -24,11 +26,11 @@ public class Interface extends JFrame {
 	private JLabel jFator;
 	private JComboBox<Object> listaFator;
 	private JComboBox<Object> listaSexo;
-	private JButton Calcular;
-	private JButton Limpar;
+	private JButton jCalcular;
+	private JButton jLimpar;
 
-    String exibiFator[] = {"Sedentário(a)", "Básica", "Leve", "Moderada", "Intensa"};
-    String exibiSexo[] = {"Masculino", "Feminino"};
+    String[] exibiFator = {"Sedentário(a)", "Básica", "Leve", "Moderada", "Intensa"};
+    String[] exibiSexo= {"Masculino", "Feminino"};
 
     int idade = 0;
 	int fator = 0;
@@ -41,7 +43,7 @@ public class Interface extends JFrame {
 	String sexo = "";
 	String resultadoSituacao = "";
 
-	public Interface() throws ParseException {
+	public Janela() throws ParseException {
 
     	this.setTitle("Calculadora Peso Ideal");
     	this.setBounds(0, 0, 350, 280);
@@ -49,7 +51,7 @@ public class Interface extends JFrame {
     	this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-    	JPanel painel = new JPanel();
+    	var painel = new JPanel();
     	this.setContentPane(painel);
     	painel.setLayout(null);
 
@@ -63,7 +65,7 @@ public class Interface extends JFrame {
     	jPeso = new JLabel("Peso:                 kg.");
     	jPeso.setBounds(170, -20, 120, 120);
     	painel.add(jPeso);
-    	recebePeso = new JFormattedTextField();
+    	recebePeso = new JFormattedTextField(new MaskFormatter("##.#"));
     	recebePeso.setBounds(210, 30, 40, 20);
     	painel.add(recebePeso);
     	
@@ -88,15 +90,15 @@ public class Interface extends JFrame {
     	listaFator.setBounds(170, 110, 110, 20);
     	painel.add(listaFator);
 
-    	Calcular = new JButton("Calcular");
-    	Calcular.setBounds(185, 165, 85, 30);
-    	painel.add(Calcular);
+    	jCalcular = new JButton("Calcular");
+    	jCalcular.setBounds(185, 165, 85, 30);
+    	painel.add(jCalcular);
     	
-    	Limpar = new JButton("Limpar");
-    	Limpar.setBounds(65, 165, 85, 30);
-    	painel.add(Limpar);
+    	jLimpar = new JButton("Limpar");
+    	jLimpar.setBounds(65, 165, 85, 30);
+    	painel.add(jLimpar);
 
-    	Calcular.addActionListener(new ActionListener() {
+    	jCalcular.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent evt) {
     			
     			sexo = (String) listaSexo.getSelectedItem();
@@ -104,7 +106,7 @@ public class Interface extends JFrame {
 
     			try {
     				altura = Double.parseDouble(recebeAltura.getText());
-    			} catch (NumberFormatException Erro1) {
+    			} catch (NumberFormatException erroAltura) {
     				JOptionPane.showMessageDialog(null,"\nPor favor preencha corretamente o campo Altura!\n\n");
     				recebeAltura.setText("");
     				altura = 0;
@@ -112,7 +114,7 @@ public class Interface extends JFrame {
     			
     			try {
     				peso = Double.parseDouble(recebePeso.getText());
-    			} catch (NumberFormatException Erro2) {
+    			} catch (NumberFormatException erroPeso) {
     				JOptionPane.showMessageDialog(null,"\nPor favor preencha corretamente o campo Peso!\nExemplo: 75.9\n\n");
     				recebePeso.setText("");
     				peso = 0;
@@ -120,7 +122,7 @@ public class Interface extends JFrame {
     				
     			try {
     				idade = Integer.parseInt(recebeIdade.getText());
-    			} catch (NumberFormatException Erro3) {
+    			} catch (NumberFormatException erroIdade) {
     				JOptionPane.showMessageDialog(null,"\nPor favor preencha corretamente o campo Idade!\n\n");
     				recebeIdade.setText("");
     				idade = 0;
@@ -129,11 +131,12 @@ public class Interface extends JFrame {
     			if (idade >= 1 && idade <= 2 || idade >= 11 && idade <= 17) {
     				JOptionPane.showMessageDialog(null,"\nIdade fora dos critérios.\n\nFaixa Etária Coberta.\nCrianças: 03 a 10 anos.\nAdultos: 18 a  64 anos.\nIdosos: Acima de 65 anos.\n\nInsira novamente a idade!\n\n");
     				recebeIdade.setText("");
+    				
     			} else if ((idade >= 3 && idade <=10) || (idade >= 18) && peso > 0) {
-    					resultadoIMC = calculoPeso.imc (altura, peso);
-    					resultadoSituacao = calculoPeso.condicaoIMC(resultadoIMC);
-        				resultadoPesoIdeal = calculoPeso.pesoIdeal(idade, altura, sexo);
-        				resultadoTaxaMetabolica = calculoMetabolico.taxaMetabolica(idade, peso, sexo, fator);
+    					resultadoIMC = CalculoPeso.imc (altura, peso);
+    					resultadoSituacao = CalculoPeso.condicaoIMC(resultadoIMC);
+        				resultadoPesoIdeal = CalculoPeso.pesoIdeal(idade, altura, sexo);
+        				resultadoTaxaMetabolica = CalculoMetabolico.taxaMetabolica(idade, peso, sexo, fator);
 
         				JOptionPane.showMessageDialog(null,"Resultado:\n\nIMC :  " +resultadoIMC+ " kg/m2.\nSituação :  " +resultadoSituacao+ ".\nPeso Ideal :  " +resultadoPesoIdeal+
         										  " kg.\nTMB Recomendada :  " +resultadoTaxaMetabolica+ " Kcal.          \n\n");
@@ -141,18 +144,15 @@ public class Interface extends JFrame {
         	}
     	});
     	
-    	Limpar.addActionListener(new ActionListener() {
+    	jLimpar.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent evt ) {
 
-    			idade = (int) (altura = peso = 0);
+    			idade = 0;
+    			altura = 0;
+    			peso = 0;
     			recebeAltura.setText("");
     			recebePeso.setText("");
     			recebeIdade.setText("");
-
-    			//Preenchido para teste.
-    			/*recebeAltura.setText("1.73");
-    			recebePeso.setText("75.0");
-    			recebeIdade.setText("27");*/
     		}
     	});
     }
