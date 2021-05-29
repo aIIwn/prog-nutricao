@@ -3,28 +3,27 @@ package entidades;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class calculoMetabolico {
+public class CalculoMetabolico {
 
 	static int indice = 0;
 	static double tmbRecomendada = 0;
-	static String resultado;
 
-	static double taxaMetabolicaMulher[] = {12.2, 14.7, 8.7, 10.5};
-	static int acrescimoMulher[] = {746, 496, 829, 596};
-	static double fatorAtividadeM[] = {1.2, 1.3, 1.45, 1.5, 1.7};
+	static double[] taxaMetabolicaMulher = {12.2, 14.7, 8.7, 10.5};
+	static int[] acrescimoMulher = {746, 496, 829, 596};
+	static double[] fatorAtividadeM = {1.2, 1.3, 1.45, 1.5, 1.7};
 
-	static double taxaMetabolicaHomem[] = {17.5, 15.3, 8.7, 13.5};
-	static int acrescimoHomem[] = {651, 679, 879, 487};
-	static double fatorAtividadeH[] = {1.2, 1.4, 1.5, 1.6, 1.8};
+	static double[] taxaMetabolicaHomem = {17.5, 15.3, 8.7, 13.5};
+	static int[] acrescimoHomem = {651, 679, 879, 487};
+	static double[] fatorAtividadeH = {1.2, 1.4, 1.5, 1.6, 1.8};
 	
 	public static double taxaMetabolica (int idade, double peso, String sexo, int fator) {
 		indice = faixaEtaria(idade);
-		if (sexo == "Masculino") {
+		if (sexo.equals("Masculino")) {
 			tmbRecomendada = ((taxaMetabolicaHomem[indice] * peso) + acrescimoHomem[indice]) * fatorAtividadeH[fator];
-		} else if (sexo == "Feminino") {
+		} else if (sexo.equals("Feminino")) {
 			tmbRecomendada = ((taxaMetabolicaMulher[indice] * peso) + acrescimoMulher[indice]) * fatorAtividadeM[fator];
-		}
-		BigDecimal taxaFormat = new BigDecimal(tmbRecomendada).setScale(1, RoundingMode.HALF_EVEN);
+		}		
+		BigDecimal taxaFormat = BigDecimal.valueOf(tmbRecomendada).setScale(1, RoundingMode.HALF_EVEN);
 		return taxaFormat.doubleValue();
 	}
 	
