@@ -3,19 +3,19 @@ package entidades;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class calculoPeso {
+public class CalculoPeso {
 
-	static int resultadoFaixaEtaria;
 	static double imc;
-	static double imcPesoIdeal; 
-	static String vetCondicao[] = {"Abaixo do Peso", "Peso Normal", "Sobre Peso", "Obeso", "Obeso Mórbido"};
-	static double imcCrianca[] = {9.0};
-	static double imcHomem[] = {9.0, 22.0, 24.3, 25.1, 23.9, 23.7, 23.1};
-	static double imcMulher[] = {9.0, 21.0, 26.5, 26.3, 26.1, 25.5, 23.6};
+	static double imcPesoIdeal;
+	static int resultadoFaixaEtaria;
+	static String[] vetCondicao = {"Abaixo do Peso", "Peso Normal", "Sobre Peso", "Obeso", "Obeso Mórbido"};
+	static double[] imcCrianca = {9.0};
+	static double[] imcHomem = {9.0, 22.0, 24.3, 25.1, 23.9, 23.7, 23.1};
+	static double[] imcMulher = {9.0, 21.0, 26.5, 26.3, 26.1, 25.5, 23.6};
 	
 	public static double imc (double altura, double peso) {
 		imc = peso / (Math.pow(altura, 2));
-		BigDecimal imcFormat = new BigDecimal(imc).setScale(1, RoundingMode.HALF_EVEN);
+		BigDecimal imcFormat = BigDecimal.valueOf(imc).setScale(1, RoundingMode.HALF_EVEN);
 		return imcFormat.doubleValue();
 	}
 	
@@ -36,14 +36,13 @@ public class calculoPeso {
 		resultadoFaixaEtaria = imcFaixaEtaria(idade);		
 		if (idade >= 3 && idade <= 10) {	
 			imcPesoIdeal = (idade * 2) + imcCrianca[resultadoFaixaEtaria];
-		} else if (idade >=18 && sexo == "Masculino") {
+		} else if (idade >=18 && sexo.equals("Masculino")) {
 			imcPesoIdeal = imcHomem[resultadoFaixaEtaria] * (Math.pow(altura, 2));
-		} else if (idade >=18 && sexo == "Feminino") {
+		} else if (idade >=18 && sexo.equals("Feminino")) {
 			imcPesoIdeal = imcMulher[resultadoFaixaEtaria] * (Math.pow(altura, 2));
-		} else {
-			//imcPesoIdeal = imcCrianca[resultadoFaixaEtaria] * (Math.pow(altura, 2)); Fazer tratamento de exceção.
 		}
-		BigDecimal pesoIdealFormat = new BigDecimal(imcPesoIdeal).setScale(1, RoundingMode.HALF_EVEN);
+		
+		BigDecimal pesoIdealFormat = BigDecimal.valueOf(imcPesoIdeal).setScale(1, RoundingMode.HALF_EVEN);
 		return pesoIdealFormat.doubleValue();
 	}
 	
