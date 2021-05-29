@@ -1,9 +1,9 @@
-package entidades;
+package programa;
 
 import java.text.ParseException;
 import javax.swing.JFrame;
 
-public class programa extends JFrame {
+public class Programa extends JFrame {
 
 	/**
 	 * 
@@ -12,8 +12,8 @@ public class programa extends JFrame {
 
 	public static void main(String[] args) throws ParseException {
 		
-	Interface janela1 = new Interface();
-	janela1.setVisible(true);
+	var prog = new Janela();
+	prog.setVisible(true);
 	
 	}
 }
